@@ -10,6 +10,4 @@ RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
 RUN ln -s /opt/app/node_modules/dynroute/bin/dynroute /bin/
 
-ADD .awsrc /root/.awsrc
-RUN echo $ACCESS_ID
 CMD ["dynroute"]
