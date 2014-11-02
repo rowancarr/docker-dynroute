@@ -1,0 +1,11 @@
+[Unit]
+Description=dynroute
+
+[Service]
+ExecStartPre=-/usr/bin/docker kill dynroute-%i
+ExecStartPre=-/usr/bin/docker rm dynroute-%i
+ExecStart=/usr/bin/docker run --rm -v /root/.awsrc:/root/.awsrc --name dynroute-%i rowancarr/docker-dynroute dynroute -d domainname.com
+ExecStop=/usr/bin/docker stop dynroute-%i
+
+[X-Fleet]
+Conflicts=dynroute@*.service
